@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ShopeeModelStoreContainer" CdmEntityContainer="ShopeeEntities">
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="ShopeeModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProStock" ColumnName="ProStock" />
+          <ScalarProperty Name="ProOrder" ColumnName="ProOrder" />
+          <ScalarProperty Name="ProColor" ColumnName="ProColor" />
+          <ScalarProperty Name="ProSupplier" ColumnName="ProSupplier" />
+          <ScalarProperty Name="CagetoryID" ColumnName="CagetoryID" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="ProName" ColumnName="ProName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProImage" ColumnName="ProImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cagetories">
+      <EntityTypeMapping TypeName="ShopeeModel.Cagetories">
+        <MappingFragment StoreEntitySet="Cagetories">
+          <ScalarProperty Name="CagetoryName" ColumnName="CagetoryName" />
+          <ScalarProperty Name="CagetoryID" ColumnName="CagetoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="ShopeeModel.Suppliers">
+        <MappingFragment StoreEntitySet="Suppliers">
+          <ScalarProperty Name="SupName" ColumnName="SupName" />
+          <ScalarProperty Name="SupID" ColumnName="SupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Colors">
+      <EntityTypeMapping TypeName="ShopeeModel.Colors">
+        <MappingFragment StoreEntitySet="Colors">
+          <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+          <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="ShopeeModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderAddress" ColumnName="OrderAddress" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="CusName" ColumnName="CusName" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ShopeeModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetail">
+      <EntityTypeMapping TypeName="ShopeeModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="OrderDeDate" ColumnName="OrderDeDate" />
+          <ScalarProperty Name="OrderDePrice" ColumnName="OrderDePrice" />
+          <ScalarProperty Name="OrderDeQuan" ColumnName="OrderDeQuan" />
+          <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+          <ScalarProperty Name="OrderDeProID" ColumnName="OrderDeProID" />
+          <ScalarProperty Name="OrderDeID" ColumnName="OrderDeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

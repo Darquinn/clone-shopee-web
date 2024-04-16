@@ -1,0 +1,43 @@
+﻿
+<div class="cart-box">
+    <a href='@Url.Action("HomeCart", "Cart")' class="cart-box-1">
+        @*<img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-12 150553.png" alt="Alternate Text" style="width: 138px; height: 58px;" />*@
+        <div style="text-align: center;"><i style='font-size:24px; color: white;' class='fas'>&#xf07a;</i></div>
+        <div class="tongsoluong">
+            @ViewBag.TongSoLuong
+        </div>
+    </a>
+    <div class="tongtien"><p><sup style="text-decoration: underline;">đ</sup> @ViewBag.TongTien.ToString("#,##")</p></div>
+</div>
+    
+
+<style>
+.cart-box{
+    margin: auto;
+}
+    .cart-box-1{
+        margin: auto 40px;
+        display: flex;
+    }
+
+    .tongsoluong{
+        width: 30px;
+        height: 20px;
+        background-color: white;
+        color: #ee4d2d;
+        text-align: center;
+        border-radius: 30px;
+    }
+    .tongtien {
+        margin: 5px auto;
+        width: 100px;
+        background-color: white;
+        color: #ee4d2d;
+        text-align: center;
+        border-radius: 30px;
+    }
+        .tongtien p{
+            margin: 0;
+        }
+       
+</style>

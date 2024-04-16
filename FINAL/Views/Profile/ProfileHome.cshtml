@@ -1,0 +1,104 @@
+﻿@using FINAL.Models;
+
+@{
+    ViewBag.Title = "ProfileHome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="mall-4-sidebar">
+        @{Html.RenderAction("ProfilePartial", "Profile"); }
+    </div>
+    <div class="content-main">
+        <div>
+            <div>
+                <h1 style="font-size :18px;">Hồ Sơ Của Tôi</h1>
+            </div>
+            <div>
+                <p style="color: #555555;">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+            </div>
+        </div>
+        <div class="main-2">
+            <table>
+                <tr>
+                    <td class="td-1"><p>Tên đăng nhập</p></td>
+                    <td class="td-2">
+                        @if (Session["Users"] != null && Session["Users"] != "")
+                        {
+                            Users acc = (Users)Session["Users"];
+                            <p>@acc.UserEmail</p>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-1"><p>Tên người dùng</p></td>
+                    <td class="td-2">
+                        @if (Session["Users"] != null && Session["Users"] != "")
+                        {
+                            Users acc = (Users)Session["Users"];
+                            <p>@acc.UserName</p>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-1"><p>Địa chỉ</p></td>
+                    <td class="td-2">
+                        @if (Session["Users"] != null && Session["Users"] != "")
+                        {
+                            Users acc = (Users)Session["Users"];
+                            <p>@acc.UserAddress</p>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-1"><p>@Html.ActionLink("Đăng Xuất","Logout","Login")</p></td>
+                   
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .content {
+        margin-top: 133px;
+        display: flex;
+    }
+
+    .mall-4-sidebar {
+        padding: 20px 0 50px;
+        margin-left: 28px;
+        width: 180px;
+    }
+
+    .content-main {
+        padding: 0 30px 10px;
+        margin-top: 20px;
+        width: 1000px;
+        background-color: white;
+    }
+
+    .main-2 {
+        padding-top: 30px;
+    }
+
+    .td-1 {
+        width: 150px;
+        height: 40px;
+        position: relative;
+    }
+
+        .td-1 p {
+            float: right;
+            color: #555555cc;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    .td-2{
+        padding: 0 0 30px 20px;
+        width: 432px;
+        height: 40px;
+    }
+</style>

@@ -1,0 +1,193 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<FINAL.Models.Products>
+
+@{
+    ViewBag.Title = "Mua sắm online sản phẩm Thời Trang Nam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/StyleStore.css" rel="stylesheet" />
+}
+@ViewBag.active = 2;
+
+<div>
+    <div class="banner">
+        <img src="https://cf.shopee.vn/file/vn-50009109-754ed387a1944ac9114715073e5ae518" alt="Alternate Text" />
+    </div>
+    <div class="mall">
+        <div class="mall-1">
+            <div><p style="font-size: 17px;">DANH MỤC</p></div>
+            <div><p style="font-size: 14px;">Xem tất cả</p></div>
+        </div>
+        <div class="mall-2">
+            <table>
+                <tr>
+                    <td><img src="https://tse1.mm.bing.net/th?id=OIP.MhQkNcPOfWR24tIDKZPitQHaHa&pid=Api&P=0&h=180" alt="Alternate Text" /></td>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/d77b771bb9eca90f3533f6bdf47335ec_tn" alt="Alternate Text" /></td>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/2501aa0421cd3a518ef7a6d6a4ad05dd_tn" alt="Alternate Text" /></td>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/e6340067687f1199533ab0a01243d8d9_tn" alt="Alternate Text" /></td>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/vn-11134233-7qukw-ljq9dwnfkhs29d_tn.webp" alt="Alternate Text" /></td>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/8f891e11526201273ead5b04599800a7_tn" alt="Alternate Text" /></td>
+                </tr>
+                <tr>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/b437d796ff3285c92489aa8b7172eb11_tn" alt="Alternate Text" /></td>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/02cc55b581a1da07745c4e19070c0f16_tn" alt="Alternate Text" /></td>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/cb728079eb53d35ae819ccb5e0b0fd96_tn" alt="Alternate Text" /></td>
+                    <td><img src="https://tse4.mm.bing.net/th?id=OIP.7PLlbnD6_Hdz0hSS0qACqQHaHa&pid=Api&P=0&h=180" alt="Alternate Text" /></td>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/212507331730aa22e81bdb4f1ca1880c_tn" alt="Alternate Text" /></td>
+                    <td><img src="https://down-bs-vn.img.susercontent.com/57342653dc9b639f5848dc52c99d94b0_tn" alt="Alternate Text" /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="mall-3">
+            <div class="mall-3-content">
+                <div class="mall-3-1"><p>SIÊU SHOP THỊNH HÀNH - BUNG DEAL SIÊU PHẨM</p></div>
+                <div class="mall-3-2">
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 213049.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;">FREESHIP & HOÀN XU</p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>1.500</p>
+                            </td>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 213144.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;">SHOP XU HƯỚNG</p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>1.500</p>
+                            </td>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 213153.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;">HÀNG QUỐC TẾ</p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>10.000</p>
+                            </td>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 213209.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;">SHOPEE MALL</p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>4.000</p>
+                            </td>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 213220.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;">SHOP HÀNG XƯỞNG</p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>2.000</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mall-3" style="margin-top: 20px;">
+            <div class="mall-3-content">
+                <div class="mall-3-1"><p>KIỂU CÁCH THỊNH HÀNH - DIỆN BẢNH MẶC SANG</p></div>
+                <div class="mall-3-2">
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 220644.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;"></p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>19.000</p>
+                            </td>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 220653.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;"></p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>34.000</p>
+                            </td>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 220702.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;"></p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>30.000</p>
+                            </td>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 220712.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;"></p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>20.000</p>
+                            </td>
+                            <td>
+                                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-02 220721.png" alt="Alternate Text" />
+                                <p style="font-size: 14px; margin: 10px 0px;"></p>
+                                <p style="color: #EE4D2D; font-size: 16px;"><span style="color: #00000042; margin-right: 5px;">Từ</span><sup>đ</sup>60.000</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mall-4">
+            <div class="mall-4-sidebar">
+                @{Html.RenderAction("StorePartial", "Store"); }
+            </div>
+            <div class="mall-4-product">
+                <div class="mall-4-1">
+                    <div><p>Sắp xếp theo</p></div>
+                    <div class="pho-bien"><p>Phổ Biến</p></div>
+                    <div class="mall-4-1-list"><p>Mới Nhất</p></div>
+                    <div class="mall-4-1-list"><p>Bán Chạy</p></div>
+                    <div class="mall-4-1-list"><p>Giá</p></div>
+                </div>
+                <div class="mall-4-2">
+                    <div>
+                        <table>
+                            @foreach (var item in Model)
+                            {
+                                FINAL.Models.ShopeeEntities db = new FINAL.Models.ShopeeEntities();
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action("ProductDetail", "Admin", new { id = item.ProID })">
+                                            <div>
+                                                <img src="@item.ProImage" width="60" />
+                                            </div>
+                                            <div style="height: 100px;" class="mall-product">
+                                                <p>@item.ProName</p>
+                                            </div>
+                                            <div style="float: left; ">
+                                                <p style="color: #ee4d2d; font-size: 16px;"><sup>đ</sup>@string.Format("{0:#,0}", item.Price)</p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                        <div class="page-list">
+                            @*<div><p style="margin: 0;">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</p></div>*@
+                            @Html.PagedListPager(Model, page => Url.Action("StoreHome", new { page }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+
+<style>
+
+    a:hover{
+        text-decoration: none;
+    }
+    .mall-4-2 table tr td {
+        height:338px;
+    }
+
+
+    .pagination-container {
+        margin: 0 auto;
+        width: 300px;
+    }
+
+    /*.pagination {
+        margin: 0 auto;
+        padding: 0px;
+        width: 160px;
+    }
+
+        .pagination li {
+            padding: 20px 10px;
+            display: inline;
+        }
+
+            .pagination li a {
+                font-size: 16px;
+                color: #00000066;
+            }*/
+
+</style>

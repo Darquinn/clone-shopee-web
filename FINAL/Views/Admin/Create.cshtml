@@ -1,0 +1,145 @@
+﻿@model FINAL.Models.Products
+
+@{
+    ViewBag.Title = "Shopee - Kênh Người Bán";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    FINAL.Models.ShopeeEntities db = new FINAL.Models.ShopeeEntities();
+    <div class="content">
+        <div class="add1-header">Thông tin cơ bản</div>
+        @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">ID sản phẩm</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProID, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập ID sản phẩm" } })
+                @Html.ValidationMessageFor(model => model.ProName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Hình ảnh</label>
+            <div class="col-md-10">
+                <input type="file" name="fileAnh" />
+                @Html.ValidationMessageFor(model => model.ProImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên sản phẩm</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProName, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập tên sản phẩm" } })
+                @Html.ValidationMessageFor(model => model.ProName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Nhà cung cấp</label>
+            <div class="col-md-10">
+                <select name="ProSupplier">
+                    @foreach (var sup in db.Suppliers.ToList())
+                    {
+                        <option value="@sup.SupID" name=>@sup.SupName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Phân loại hàng</label>
+            <div class="col-md-10">
+                <select name="CagetoryID">
+                    @foreach (var phanLoai in db.Cagetories.ToList())
+                    {
+                        <option value="@phanLoai.CagetoryID" name=>@phanLoai.CagetoryName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Màu sắc</label>
+            <div class="col-md-10">
+                <select name="ProColor">
+                    @foreach (var mau in db.Colors.ToList())
+                    {
+                        <option value="@mau.ColorID" name=>@mau.ColorName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Giá sản phẩm</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    </div>
+}
+
+<style>
+    .main-content {
+        width: 1016px;
+    }
+
+    .add1-header {
+        padding: 24px;
+        font-size: 20px;
+        color: #333333;
+        font-weight: bold;
+    }
+
+    .content {
+        margin-top: 20px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+        display: flex;
+    }
+
+        .form-group label {
+            margin-right: 16px;
+            text-align: right;
+            font-size: 14px;
+            color: #333333;
+            width: 144px;
+            line-height: 40px;
+        }
+
+    .form-control {
+        width: 800px;
+        height: 40px;
+        outline: none;
+        border: none;
+        border: 0.5px solid lightgrey;
+        border-radius: 5px;
+    }
+
+    .form-control-image {
+        line-height: 40px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    select {
+        width: 800px;
+        height: 40px;
+        outline: none;
+        border: none;
+        border: 0.5px solid lightgrey;
+        border-radius: 5px;
+    }
+</style>

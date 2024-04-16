@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fcada24cfbbc4f97b9a6ef165331ab4a" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="ShopeeModel.Products" Width="1.5" PointX="3.125" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopeeModel.Cagetories" Width="1.5" PointX="0.75" PointY="1.25" />
+        <AssociationConnector Association="ShopeeModel.FK_Products_Cagetories1" />
+        <EntityTypeShape EntityType="ShopeeModel.Suppliers" Width="1.5" PointX="0.75" PointY="3.125" />
+        <AssociationConnector Association="ShopeeModel.FK_Products_Suppliers" />
+        <EntityTypeShape EntityType="ShopeeModel.Colors" Width="1.5" PointX="0.75" PointY="4.875" />
+        <AssociationConnector Association="ShopeeModel.FK_Products_Colors" />
+        <EntityTypeShape EntityType="ShopeeModel.Orders" Width="1.5" PointX="5.375" PointY="1.5" />
+        <AssociationConnector Association="ShopeeModel.FK_Products_Orders" />
+        <EntityTypeShape EntityType="ShopeeModel.Users" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ShopeeModel.OrderDetail" Width="1.5" PointX="7.625" PointY="1.625" />
+        <AssociationConnector Association="ShopeeModel.FK_OrderDetail_Orders" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

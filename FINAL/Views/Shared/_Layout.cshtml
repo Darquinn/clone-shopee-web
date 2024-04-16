@@ -1,0 +1,608 @@
+﻿@using FINAL.Models;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@*@ViewBag.Title*@ Shopee Việt Nam | Mua và Bán Trên Ứng Dụng Di Động Hoặc Website</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<body>
+    <nav>
+        <div class="nav-1">
+            <div class="nav1-left">
+                <p>@Html.ActionLink("Kênh Người Bán", "ProductsList", "Admin")</p>
+                <span>|</span>
+                @if (ViewBag.active == 1)
+                {
+                    <p>Trở thành Người bán Shopee</p>
+                    <span>|</span>
+                }
+
+                <div class="app">
+                    <p>Tải ứng dụng</p>
+                    <div class="qr-code">
+                        <img style="width: 186px; height: 186px;" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/d91264e165ed6facc6178994d5afae79.png" alt="Shopee QR code" />
+                        <div class="store-app">
+                            <img style="width: 70px; height: 17px;" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/39f189e19764dab688d3850742f13718.png" alt="App Store" />
+                            <img style="width: 70px; height: 17px;" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/f4f5426ce757aea491dce94201560583.png" alt="CH Play" />
+                        </div>
+                        <img style="width: 70px; height: 17px; margin: 10px 55px; " src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/1ae215920a31f2fc75b00d4ee9ae8551.png" alt="Alternate Text" />
+                    </div>
+                </div>
+                <span>|</span>
+                <p>Kết nối</p>
+                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-22 210450.png" alt="Alternate Text" style="margin-right: 5px;" />
+                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-22 210508.png" />
+            </div>
+
+            <div class="nav1-right">
+                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-22 211448.png" alt="Alternate Text" />
+                <div class="noti">
+                    <p>Thông Báo</p>
+                    @if (ViewBag.active == 1)
+                    {
+                        <div class="noti-box">
+                            <div class="noti-img">
+                                <img class="noti-img-items" style="width: 100px; height: 100px;" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/99e561e3944805a023e87a81d4869600.png" alt="Thiên Lân" />
+                                <div style="color: black;">Đăng nhập để xem Thông báo</div>
+                            </div>
+                            <div class="noti-sign">
+                                <ul>
+                                    <li class="sign-items">Đăng ký</li>
+                                    <li class="sign-items">Đăng nhập</li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-22 210533.png" alt="Alternate Text" />
+                <p>Hỗ Trợ</p>
+                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-22 210545.png" alt="Alternate Text" />
+                <p>Tiếng Việt</p>
+                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-22 210627.png" alt="Alternate Text" />
+
+                @if (Session["Users"] != null && Session["Users"] != "")
+                {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="margin-left: 15px;">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                    </svg>
+                    Users acc = (Users)Session["Users"];
+                    <a href="@Url.Action("ProfileHome","Profile")" style="color: white; text-decoration: none;">
+                        <p>@acc.UserName</p>
+
+                    </a>
+                }
+                else
+                {
+                    <p>@Html.ActionLink("Đăng Ký", "Signup", "Login")</p>
+                    <span>|</span>
+                    <p>@Html.ActionLink("Đăng Nhập", "Login", "Login")</p>
+                }
+
+            </div>
+        </div>
+
+        <div class="nav-2">
+            <table>
+                <tr>
+                    <td style="width: 200px; height: 85px;">
+                        <a href='@Url.Action("TrangChu", "Home")'>
+                            <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-12 145101.png" style="width: 172px; height: 60px;"/>
+                        </a>
+                    </td>
+                    <td style="width: 840px; height: 85px;">
+                        <div class="nav2-td2">
+                            <ul>
+                                <li>
+                                    @using (Html.BeginForm("StoreHome", "Store", FormMethod.Get))
+                                    {
+                                        <div class="searchbar-input">
+                                            <input type="text" name="SearchString" placeholder="Shopee bao ship 0Đ - Đăng ký ngay!" class="srch-text" />
+                                            <button type="submit" name="btn" class="btn btn-warning" /><i class="fa fa-search"></i>
+
+                                        </div>
+                                    }
+                                </li>
+                                <li>
+                                    <div class="nav2-td2-list">
+                                        <p>Áo 0đ</p>
+                                        <p>iPhone 1k Chính Hãng</p>
+                                        <p>iPhone 1k</p>
+                                        <p>Dép 0đ</p>
+                                        <p>Dép 0 Đồng Nữ</p>
+                                        <p>Hàng Bom Giá Rẻ 1k</p>
+                                        <p>Săn Đồ 0đ</p>
+                                        <p>Set Đồ</p>
+                                        <p>Xe Điện Xmen Cũ</p>
+                                        <p>Áo Khoác Nữ 1k</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="cart" style="width: 138px; height: 85px;">
+                        @{ Html.RenderAction("PartialCart", "Cart");}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="foot-1">
+            <h5>SHOPEE - GÌ CŨNG CÓ, MUA HẾT Ở SHOPEE</h5>
+            <p>
+                Shopee - ứng dụng mua sắm trực tuyến thú vị, tin cậy, an toàn và miễn phí! Shopee là nền tảng giao dịch trực tuyến hàng đầu ở Đông Nam Á, có trụ sở chính ở Singapore, đã có mặt ở khắp các khu vực <b>Singapore, Malaysia, Indonesia, Thái Lan, Philippines, Đài Loan, Brazil, México & Colombia</b>. Với sự đảm bảo của Shopee, bạn sẽ mua hàng trực tuyến an tâm và nhanh chóng hơn bao giờ hết!
+            </p>
+            <h5>MUA SẮM VÀ BÁN HÀNG ONLINE ĐƠN GIẢN, NHANH CHÓNG VÀ AN TOÀN</h5>
+            <p>
+                Nếu bạn đang tìm kiếm một trang web để mua và bán hàng trực tuyến thì Shopee.vn là một sự lựa chọn tuyệt vời dành cho bạn. Shopee là trang thương mại điện tử cho phép người mua và người bán tương tác và trao đổi dễ dàng thông tin về sản phẩm và chương trình khuyến mãi của shop. Do đó, việc mua bán trên Shopee trở nên nhanh chóng và đơn giản hơn. Bạn có thể trò chuyện trực tiếp với nhà bán hàng để hỏi trực tiếp về mặt hàng cần mua. Còn nếu bạn muốn tìm mua những dòng sản phẩm chính hãng, uy tín, <b><ins>Shopee Mall</ins></b> chính là sự lựa chọn lí tưởng dành cho bạn. Để bạn có thể dễ dàng khi tìm hiểu và sử dụng sản phẩm, <b><ins>Shopee Blog - trang blog thông tin chính thức của Shopee</ins></b> - sẽ giúp bạn có thể tìm được cho mình các kiến thức về xu hướng thời trang, review công nghệ, mẹo làm đẹp, tin tức tiêu dùng và deal giá tốt bất ngờ.<br /><br />
+
+                Đến với Shopee, cơ hội để trở thành một nhà bán hàng dễ dàng hơn bao giờ hết. Chỉ với vài thao tác trên ứng dụng, bạn đã có thể đăng bán ngay những sản phẩm của mình. Không những thế, các nhà bán hàng có thể tự <b><ins>tạo chương trình khuyến mãi trên Shopee</ins></b> để thu hút người mua với những sản phẩm có mức giá hấp dẫn. Khi đăng nhập tại Shopee Kênh người bán, bạn có thể dễ dàng phân loại sản phẩm, theo dõi đơn hàng, chăm sóc khách hàng và cập nhập ngay các hoạt động của shop.<br /><br />
+
+                Bên cạnh đó, Shopee hợp tác với nhiều đơn vị vận chuyển uy tín trên thị trường như <b><ins>SPX Express</ins></b>,... nhằm cung cấp dịch vu giao nhận và vận chuyển tiện lợi cho cả khách hàng và người bán. Cùng với nhiều ưu đãi với chi phí giao hàng hợp lý, Shopee đảm bảo cho khách hàng trải nghiệm mua sắm thuận tiện nhất.
+            </p>
+            <h5>TẢI ỨNG DỤNG SHOPEE NGAY ĐỂ MUA BÁN ONLINE MỌI LÚC, MỌI NƠI</h5>
+            <p>
+                Ưu điểm của ứng dụng Shopee là cho phép bạn mua và bán hàng mọi lúc, mọi nơi. Bạn có thể tải ứng dụng Shopee cũng như đăng sản phẩm bán hàng một cách nhanh chóng và tiện lợi. Ngoài ra, ứng dụng Shopee còn có những ưu điểm sau:
+            </p>
+            <ul>
+                <li>
+                    Giao diện thân thiện, đơn giản, dễ sử dụng. Bạn sẽ dễ dàng thấy được ngay những sản phẩm nổi bật cũng như dễ dàng tìm đến các ô tìm kiếm, giỏ hàng hoặc tính năng chat liền tay.
+                </li>
+                <li>
+                    Ứng dụng tích hợp công nghệ quản lý đơn mua và bán hàng tiện lợi trên cùng một tài khoản. Bạn sẽ vừa là người mua hàng, vừa là người bán hàng rất linh hoạt, dễ dàng.
+                </li>
+                <li>
+                    Cập nhập thông tin khuyến mãi, <b><ins>Shopee Flash Sale</ins></b> nhanh chóng và liên tục.
+                </li>
+            </ul>
+            <p>
+                Tại Shopee, bạn có thể lưu các <b><ins>mã giảm giá, Voucher Xtra</ins></b> và <b><ins>mã miễn phí vận chuyển</ins></b> toàn quốc. Bên cạnh đó, Shopee cũng sẽ có những chiến dịch khuyến mãi lớn hằng năm như <b><ins>Sale 2.2, Sale 3.3, Sale 4.4, Sale 5.5, Sale 6.6, Sale 7.7, Sale 8.8, Sale 9.9, Sale 10.10, Sale 11.11, Sale Sinh Nhật 12.12; Khuyến Mãi Tết</ins></b> thả ga săn sale <b><ins>quà Tết</ins></b> chất lượng. Đây là thời điểm để người mua hàng có thể nhanh tay chọn ngay cho mình những mặt hàng ưa thích với mức giá giảm kỉ lục. Ngoài ra, bạn còn có thể thỏa thích săn sale vào các ngày trong tháng như <b><ins>Sale giữa tháng</ins></b> và <b><ins>Sale cuối tháng đón lương về</ins></b>, hoặc đón xem <b><ins>Shopee Live</ins></b> để săn hàng ngàn deal hời giá sốc.
+            </p>
+            <h5>MUA HÀNG HIỆU CAO CẤP GIÁ TỐT TẠI SHOPEE </h5>
+            <p>
+                Bên cạnh <b><ins>Shopee Premium</ins></b>, Shopee còn có rất nhiều khuyến mãi khủng cho <b><ins>hàng hiệu giảm đến 50%</ins></b>. Cộng với mã giao hàng miễn phí, Shopee cũng có các mã giảm giá được phân phối mỗi tháng từ rất nhiều gian hàng chính hãng tham gia chương trình khuyến mãi này. Bên cạnh đó, Shopee còn tập hợp rất nhiều thương hiệu đình đám được các nhà bán lẻ uy tín phân phối bán trên Shopee, <b><ins>top sản phẩm hot deal cho bạn săn sale</ins></b> luôn cập nhật mỗi giờ, mỗi ngày, đem đến cho bạn sự lựa chọn đa dạng, từ các hãng mỹ phẩm nổi tiếng hàng đầu như <b><ins>Kiehl's, MAC, Foreo, SK-II, Estee Lauder</ins></b>,... Đến những thương hiệu công nghệ nổi tiếng như: <b><ins>camera hành trình Gopro, máy ảnh Fuifilm, webcam Hikvision, máy đọc sách Kindle</ins></b>,... Tại Shopee, bạn có thể dễ dàng tìm thấy các thương hiệu giày thể thao phổ biến hiện nay như: <b><ins>New Balance, Nike, Vans, Crocs</ins></b>,...
+            </p>
+            <h5>MUA HÀNG CHÍNH HÃNG TỪ CÁC THƯƠNG HIỆU LỚN VỚI SHOPEE</h5>
+            <p>
+                Mua hàng trên Shopee luôn là một trải nghiệm ấn tượng. Dù bạn đang có nhu cầu mua bất kỳ mặt hàng <b><ins>thời trang nam, thời trang nữ, đồng hồ, điện thoại, máy tính & laptop</ins></b>,... thì Shopee cũng sẽ đảm bảo cung cấp cho bạn những sản phẩm ưng ý. Bên cạnh đó, Shopee cũng có sự tham gia của các thương hiệu hàng đầu thế giới ở đa dạng nhiều lĩnh vực khác nhau. Trong đó có thể kể đến Samsung, OPPO, Xiaomi, Innisfree, Unilever, P&G, Biti’s,...Các thương hiệu này hiện cũng đã có cửa hàng chính thức trên Shopee Mall với hàng trăm mặt hàng chính hãng, được cập nhập liên tục. Là một kênh bán hàng uy tín, Shopee luôn cam kết mang lại cho khách hàng những trải nghiệm mua sắm online giá rẻ, an toàn và tin cậy. Mọi thông tin về người bán và người mua đều được bảo mật tuyệt đối. Các hoạt động giao dịch thanh toán tại Shopee luôn được đảm bảo diễn ra nhanh chóng, an toàn. Một vấn đề nữa khiến cho các khách hàng luôn quan tâm đó chính là mua hàng trên Shopee có đảm bảo không.<br /><br />
+
+                Shopee luôn cam kết mọi sản phẩm trên Shopee, đặc biệt là Shopee Mall đều là những sản phẩm chính hãng, đầy đủ tem nhãn, bảo hành từ nhà bán hàng. Ngoài ra, Shopee bảo vệ người mua và người bán bằng cách giữ số tiền giao dịch đến khi người mua xác nhận đồng ý với đơn hàng và không có yêu cầu khiếu nại, trả hàng hay hoàn tiền nào. Thanh toán sau đó sẽ được chuyển đến cho người bán. Đến với Shopee ngay hôm nay để mua hàng online giá rẻ và trải nghiệm dịch vụ chăm sóc khách hàng tuyệt vời tại đây. Đặc biệt khi mua sắm trên Shopee Mall, bạn sẽ được miễn phí vận chuyển, giao hàng tận nơi và 7 ngày miễn phí trả hàng. Ngoài ra, khách hàng có thể sử dụng Shopee Xu để đổi lấy mã giảm giá có giá trị cao và voucher dịch vụ hấp dẫn. Tiếp đến là <b><ins>Shopee Home Club, Shopee Mum Club, Shopee Beauty Club</ins></b> và <b><ins>Shopee Book Club</ins></b> với các ưu đãi độc quyền từ các thương hiệu lớn có những khách hàng đã đăng ký làm thành viên. Hãy truy cập ngay Shopee Việt Nam hoặc tải ngay ứng dụng Shopee về điện thoại ngay hôm nay!
+            </p>
+            <h5>TOP THƯƠNG HIỆU NỔI BẬT</h5>
+            <p>
+                <ins>Philips <span style="margin: 0px 5px;">|</span> Deerma  <span style="margin: 0px 5px;">|</span>  L'Oréal  <span style="margin: 0px 5px;">|</span> Kiehl's  |  Kappa  <span style="margin: 0px 5px;">|</span>  Juno  <span style="margin: 0px 5px;">|</span>  Converse  <span style="margin: 0px 5px;">|</span>  Biti's  <span style="margin: 0px 5px;">|</span>  Owen  <span style="margin: 0px 5px;">|</span>  Pedro  <span style="margin: 0px 5px;">|</span>  New Balance  <span style="margin: 0px 5px;">|</span>  adidas  <span style="margin: 0px 5px;">|</span>  Samsung  <span style="margin: 0px 5px;">|</span>  Sunhouse  <span style="margin: 0px 5px;">|</span>  Xiaomi  <span style="margin: 0px 5px;">|</span>  Oreo  <span style="margin: 0px 5px;">|</span>  Nike  <span style="margin: 0px 5px;">|</span>  Pantio  <span style="margin: 0px 5px;">|</span>  Supreme  <span style="margin: 0px 5px;">|</span>  PUMA  <span style="margin: 0px 5px;">|</span>  Kindle  <span style="margin: 0px 5px;">|</span>  DHC  <span style="margin: 0px 5px;">|</span>  Transino  <span style="margin: 0px 5px;">|</span>  Martiderm  <span style="margin: 0px 5px;">|</span>  Paula’s Choice  <span style="margin: 0px 5px;">|</span>  The Ordinary  <span style="margin: 0px 5px;">|</span>  KitKat  <span style="margin: 0px 5px;">|</span>  Teelab  <span style="margin: 0px 5px;">|</span>  SomeHow  <span style="margin: 0px 5px;">|</span>  Elise  <span style="margin: 0px 5px;">|</span>  YODY  <span style="margin: 0px 5px;">|</span>  Coolmate  <span style="margin: 0px 5px;">|</span>  MARC Fashion  <span style="margin: 0px 5px;">|</span>  Vergency <span style="margin: 0px 5px;">|</span>  Scott Platon  <span style="margin: 0px 5px;">|</span>  GUMAC  <span style="margin: 0px 5px;">|</span>  Vascara  <span style="margin: 0px 5px;">|</span>  MWC  <span style="margin: 0px 5px;">|</span>  Shondo  <span style="margin: 0px 5px;">|</span>  CANIFA  <span style="margin: 0px 5px;">|</span>  Sablanca  <span style="margin: 0px 5px;">|</span>  OLV Boutique  <span style="margin: 0px 5px;">|</span>  Pandora  <span style="margin: 0px 5px;">|</span>  Dottie  <span style="margin: 0px 5px;">|</span>  Skin Aqua <span style="margin: 0px 5px;">|</span> SkinCeuticals <span style="margin: 0px 5px;">|</span> Pediasure <span style="margin: 0px 5px;">|</span> Abbott Grow <span style="margin: 0px 5px;">|</span> Obagi Beauty <span style="margin: 0px 5px;">|</span> L'Amour Paris</ins>
+            </p>
+            <h5>TOP TỪ KHÓA XU HƯỚNG</h5>
+            <p>
+                <ins>thang dây thoát hiểm <span style="margin: 0px 5px;">|</span> nạp thẻ <span style="margin: 0px 5px;">|</span> bình chữa cháy <span style="margin: 0px 5px;">|</span> shopdunk <span style="margin: 0px 5px;">|</span> bánh trung thu <span style="margin: 0px 5px;">|</span> lồng đèn <span style="margin: 0px 5px;">|</span> atlat địa lí <span style="margin: 0px 5px;">|</span> bánh sinh nhật <span style="margin: 0px 5px;">|</span> pnj <span style="margin: 0px 5px;">|</span> đèn trung thu <span style="margin: 0px 5px;">|</span> áo đá bóng <span style="margin: 0px 5px;">|</span> gạo <span style="margin: 0px 5px;">|</span> lồng đèn trung thu <span style="margin: 0px 5px;">|</span> máy tính casio <span style="margin: 0px 5px;">|</span> lồng đèn con thỏ <span style="margin: 0px 5px;">|</span> pin lithium <span style="margin: 0px 5px;">|</span> yame <span style="margin: 0px 5px;">|</span> concung <span style="margin: 0px 5px;">|</span> atlat <span style="margin: 0px 5px;">|</span> áo bóng đá <span style="margin: 0px 5px;">|</span> mediamart <span style="margin: 0px 5px;">|</span> vợt cầu lông <span style="margin: 0px 5px;">|</span> vaseline <span style="margin: 0px 5px;">|</span> đèn lồng <span style="margin: 0px 5px;">|</span> máy sấy quần áo <span style="margin: 0px 5px;">|</span> dienthoaigiakho <span style="margin: 0px 5px;">|</span> chainsaw man <span style="margin: 0px 5px;">|</span> bibomart <span style="margin: 0px 5px;">|</span> bạc hà núi <span style="margin: 0px 5px;">|</span> nhẫn dr</ins>
+            </p>
+        </div>
+
+
+        <div class="foot-2">
+            <div class="danhmuc-title">
+                <p style="color: dimgrey; font-weight: bold; margin: 4px 0px;">Danh Mục</p>
+            </div>
+            <div class="danhmuc-list">
+                <table>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">THỜI TRANG NAM</li>
+                                <li>Áo Khoác | Áo Vest và Blazer | </li>
+                                <li>Áo Hoodie, Áo Len & Áo Nỉ | Quần Jeans |</li>
+                                <li>Quần Dài/Quần Âu | Quần Short | Áo |</li>
+                                <li>Áo Ba Lỗ | Đồ Lót | Đồ Ngủ | Đồ Bộ | </li>
+                                <li>Vớ/Tất | Trang Phục Truyền Thống |</li>
+                                <li>Đồ Hóa Trang | Trang Phục Ngành Nghề |</li>
+                                <li>Khác | Trang Sức Nam | Kính Mắt Nam |</li>
+                                <li>Thắt Lưng Nam | Cà vạt & Nơ cổ |</li>
+                                <li>Phụ Kiện Nam</li>
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">NHÀ CỬA & ĐỜI SỐNG</li>
+                                <li>Chăn, Ga, Gối & Nệm | Đồ Nội Thất |</li>
+                                <li>Trang trí nhà cửa |</li>
+                                <li>Dụng cụ & Thiết bị tiện ích |</li>
+                                <li>Đồ dùng nhà bếp và hộp đựng thực phẩm</li>
+                                <li> | Đèn | Ngoài trời & Sân vườn |</li>
+                                <li>Đồ dùng phòng tắm | Vật phẩm thờ cúng |</li>
+                                <li>Đồ trang trí tiệc |</li>
+                                <li>Chăm sóc nhà cửa và giặt ủi |</li>
+                                <li>Sắp xếp nhà cửa | Dụng cụ pha chế |</li>
+                                <li>Tinh dầu thơm phòng | Đồ dùng phòng ăn </li>
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">ĐỒNG HỒ</li>
+                                <li>Đồng Hồ Nam | Đồng Hồ Nữ |</li>
+                                <li>Bộ Đồng Hồ & Đồng Hồ Cặp |</li>
+                                <li>Đồng Hồ Trẻ Em | Phụ Kiện Đồng Hồ |</li>
+                                <li>Khác</li>
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">PHỤ KIỆN & TRANG SỨC NỮ</li>
+                                <li>Nhẫn | Bông tai | Khăn choàng | Găng tay |</li>
+                                <li>Phụ kiện tóc | Vòng tay & Lắc tay |</li>
+                                <li>Lắc chân | Mũ | Dây chuyền | Kính mắt |</li>
+                                <li>Kim loại quý | Thắng lưng | Cà vạt & Nơ cổ |</li>
+                                <li>Phụ kiện thêm | Bộ phụ kiện | Khác |</li>
+                                <li>Vớ/ Tất | Ô/Dù</li>
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">BALO & TÚI VÍ NAM</li>
+                                <li>Ba Lô Nam | Ba Lô Laptop Nam |</li>
+                                <li>Túi & Cặp Đựng Laptop |</li>
+                                <li>Túi Chống Sốc Laptop Nam | Túi Tote Nam </li>
+                                <li> | Cặp Xách Công Sở Nam</li>
+                                <li>Ví Cầm Tay Nam |</li>
+                                <li>Túi Đeo Hông & Túi Đeo Ngực Nam |</li>
+                                <li>Túi Đeo Chéo Nam | Bóp/Ví Nam | Khác </li>
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">VOUCHER & DỊCH VỤ</li>
+                                <li>Nhà hàng & Ăn uống | Sự kiện & Giải trí |</li>
+                                <li>Nạp tiền tài khoản | Sức khỏe & Làm đẹp |</li>
+                                <li>Gọi xe | Khóa học | Du lịch & Khách sạn |</li>
+                                <li>Mua sắm | Mã quà tặng Shopee |</li>
+                                <li>Thanh toán hóa đơn | Dịch vụ khác</li>
+
+                            </ul>
+                        </td>
+                        <td style="position: relative;">
+                            <ul style="position: absolute; top: 0;">
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">THỜI TRANG NỮ</li>
+                                <li>Quần | Quần đùi | Chân váy | Quần jeans | </li>
+                                <li>Đầm/Váy | Váy cưới | Đồ liền thân |</li>
+                                <li>Áo khoác, Áo choàng & Vest |</li>
+                                <li>Áo le & Cardigan | Hoodie & Aó nỉ | Bộ |</li>
+                                <li>Đò lót | Đồ ngủ | Áo | Đồ tập | Đồ bầu |</li>
+                                <li>Đồ truyền thống | Đồ hóa trang | Vải |</li>
+                                <li>TÍNHVớ/Tất | Khác </li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">MÁY TÍNH & LAPTOP</li>
+                                <li>Máy tình bàn | Màn hình |</li>
+                                <li>Linh kiện máy tính | Thiết bị lưu trữ |  </li>
+                                <li>Thiết bị mạng |</li>
+                                <li>Máy in, Máy Scan & Máy chiếu |</li>
+                                <li>Phụ kiện máy tính | Laptop | Khác</li>
+                                <li>Gaming </li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">GIÀY DÉP NỮ</li>
+                                <li>Bót | Giày thể thao / Sneaker </li>
+                                <li>Giày Đế Bằng | Giày Cao Gót |</li>
+                                <li>Giày Đế Xuồng | Xăng-đan và Dép | </li>
+                                <li>Phụ Kiện Giày | Giày Khác</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">THỂ THAO & DU LỊCH </li>
+                                <li> Vali | Túi du lịch | Phụ kiện du lịch |</li>
+                                <li>Dụng Cụ Thể thao & Dã Ngoại |</li>
+                                <li>Giày Thể Thao |</li>
+                                <li>Thời Trang Thể Thao & Dã Ngoại |</li>
+                                <li>Phụ Kiện Thể Thao & Dã Ngoại | Khác</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">THỜI TRANG TRẺ EM</li>
+                                <li>Trang phục bé trai | Trang phục bé gái |</li>
+                                <li>Giày dép bé trai | Giày dép bé gái | Khác |</li>
+                                <li>Quần áo em bé | Giày tập đi & Tất sơ sinh </li>
+                                <li>| Phụ kiện trẻ em</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">DỤNG CỤ VÀ THIẾT BỊ TIỆN ÍCH</li>
+                                <li> Dụng cụ cầm tay |</li>
+                                <li>Dụng cụ và thiết bị lớn |</li>
+                                <li>Thiết bị mạch điện | Vật liệu xây dưng | </li>
+                                <li>Thiết bị và phụ kiện xây dựng</li>
+
+                            </ul>
+                        </td>
+                        <td style="position: relative;">
+                            <ul style="position: absolute; top: 0;">
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">ĐIỆN THOẠI VÀ PHỤ KIỆN</li>
+                                <li>Điện thoại | Máy tính bảng | Pin dự phòng </li>
+                                <li>| Pin Gắn Trong, Cấp và Bộ sạc |</li>
+                                <li> Ốp lưng, bao da, Miếng dán điện thoại |</li>
+                                <li>bảo vệ màn hình | Đế giữ điện thoại | </li>
+                                <li>Thẻ nhớ | Sim | Phụ kiện khác |</li>
+                                <li>Thiết bị khác </li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">SẮC ĐẸP</li>
+                                <li>Chăm sóc da mặt | Tắm & chăm sóc cơ thể </li>
+                                <li>| Trang điểm | Chắm sóc tóc |</li>
+                                <li>Dụng cụ & Phụ kiện làm đẹp |</li>
+                                <li>Vệ sinh răng miệng | Nước hoa | </li>
+                                <li>Chăm sóc nam giới | Khác |</li>
+                                <li>Chăm sóc phụ nữ | Bộ sản phẩm làm đẹp</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">GIÀY DÉP NAM</li>
+                                <li>Bốt | Giày Thể Thao/ Sneakers | Giày Sục</li>
+                                <li> | Giày Tây Lưới |</li>
+                                <li>Giày Oxfords & Giày Buộc Dây |</li>
+                                <li>Xăng-đan và dép | Phụ kiện giày dép |</li>
+                                <li>Khác</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">BÁCH HÓA ONLINE</li>
+                                <li>Đồ ăn vặt | Đồ chế biến sẵn |</li>
+                                <li>Nhu yếu phẩm | Nguyên liệu nấu ăn |</li>
+                                <li>Đồ làm bánh | Sữa - trứng | Đồ uống |</li>
+                                <li>Ngũ cốc & mứt | Bộ quà tặng | </li>
+                                <li>Đồ uống có cồn | Bộ quà tặng | </li>
+                                <li>Thực phẩm tươi sống và thực phẩm đông </li>
+                                <li>lạnh </li>
+                                <li>| Khác </li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">ĐỒ CHƠI</li>
+                                <li>Sở thích & Sưu tầm | Đò chơi giải trí | </li>
+                                <li> Đồ chơi giáo dục |</li>
+                                <li>Đồ chơi cho trẻ sơ sinh & trẻ nhỏ |</li>
+                                <li>Đồ chơi vận động & ngoài trời |</li>
+                                <li>Búp bê & Đồ chơi nhồi bông</li>
+                            </ul>
+                        </td>
+                        <td style="position: relative;">
+                            <ul style="position: absolute; top: 0;">
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">MẸ & BÉ</li>
+                                <li>Đồ dùng du lịch cho bé |</li>
+                                <li>Đồ dùng ăn dặm cho bé | Phụ kiện cho mẹ</li>
+                                <li>| Chăm sóc sức khỏe mẹ | </li>
+                                <li>Đồ dùng phòng tắm & Chăm sóc cơ thể bé</li>
+                                <li>| Đồ dùng phòng ngủ cho bé |</li>
+                                <li>An toàn cho bé | Thực phẩm cho bé |</li>
+                                <li>Chăm sóc sức khỏe bé | Tã & bô em bé |</li>
+                                <li>Đồ chơi | Bộ & Gói quà tặng | Khác |</li>
+                                <li>Sữa công thức trên 24 tháng |</li>
+                                <li>Sữa công thức 0-24 tháng tuổi</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">MÁY ẢNH & MÁY QUAY PHIM</li>
+                                <li>Máy ảnh - Máy quay phim</li>
+                                <li>Camera giám sát & Camera hệ thống | </li>
+                                <li>Thẻ nhớ | Ống kính | Phụ kiện máy ảnh |</li>
+                                <li>Máy bay camera & Phụ kiện</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">TÚI VÍ NỮ</li>
+                                <li>Ba Lô Nữ | Cặp Laptop |</li>
+                                <li>Ví Dự Tiệc & Ví Cầm Tay |</li>
+                                <li>Túi Đeo Hông & Túi Đeo Ngược | Túi Tote |</li>
+                                <li>Túi Quai Xách |</li>
+                                <li>Túi Đeo Chéo & Túi Đeo Vai | Ví/Bóp Nữ |</li>
+                                <li>Phụ Kiện Túi | Khác </li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">Ô TÔ & XE MÁY & XE ĐẠP</li>
+                                <li>Xe đạp, xe điện | Mô tô, xe máy | Xe Ô tô |</li>
+                                <li>Mũ bảo hiểm | Phụ kiện xe máy |</li>
+                                <li>Phụ kiện xe đạp | Phụ kiện bên trong ô tô |</li>
+                                <li>Dầu nhớt & dầu nhờn | Phụ tùng ô tô |</li>
+                                <li>Phụ tùng xe máy | Phụ kiện bên ngoài ô tô </li>
+                                <li>| Chăm sóc ô tô | Dịch vụ cho xe </li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">GIẶT GIŨ & CHĂM SÓC NHÀ CỬA </li>
+                                <li>Giặt giũ & chăm sóc nhà cửa |</li>
+                                <li>Giấy vệ sinh, khăn giấy | Vệ sinh nhà cửa |</li>
+                                <li>Vệ sinh bát đĩa | Dụng cụ vệ sinh |</li>
+                                <li>Chất khử mùi, làm thơm |</li>
+                                <li>Thuốc diệt côn trùng |</li>
+                                <li>Túi, màng bọc thực phẩm |</li>
+                                <li>Bao bì, túi đựng rác  </li>
+
+
+                            </ul>
+                        </td>
+                        <td style="position: relative;">
+                            <ul style="position: absolute; top: 0;">
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">THIẾT BỊ ĐIỆN TỬ </li>
+                                <li>Thiết bị đeo thông minh | Phụ kiện tivi |</li>
+                                <li>Máy Game Console | Phụ kiện Console |</li>
+                                <li>Đĩa game | Linh phụ kiện | Tai nghe nhét tai</li>
+                                <li>| Loa | Tivi | Tivi Box | Headphones</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">SỨC KHỎE</li>
+                                <li>Vật tư y tế |</li>
+                                <li>Chống muỗi & xua đuổi côn trùng |</li>
+                                <li>Thực phẩm chức năng | Tã người lớn |</li>
+                                <li>Hỗ trợ làm đẹp | Hỗ trợ tình dục |</li>
+                                <li>Dụng cụ massage và trị liệu | Khác</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">THIẾT BỊ GIA DỤNG</li>
+                                <li>Đồ gia dụng nhà bếp | Đồ gia dụng lớn |</li>
+                                <li>Máy hút bụi & Thiết bị làm sạch |</li>
+                                <li>Quạt & Máy nóng lạnh |</li>
+                                <li>Thiết bị chăm sóc quần áo | Khác |</li>
+                                <li>Máy xay, ép, máy đánh trứng trộn bột, máy  </li>
+                                <li>xay thực phẩm</li>
+                                <li>| Bếp điện</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">NHÀ SÁCH ONLINE</li>
+                                <li>Sách Tiếng Việt | Sách ngoại văn | Gói Quà</li>
+                                <li>| Bút viết | Dụng cụ học sinh & văn phòng </li>
+                                <li>| Màu, Họa Cụ và Đồ Thủ Công |</li>
+                                <li>Sổ và Giấy Các Loại | Quà Lưu Niệm | </li>
+                                <li>Nhạc cụ và phụ kiện âm nhạc</li>
+
+                                <li style="color: dimgrey; font-weight: bold; margin: 4px 0px;">CHĂM SÓC THÚ CƯNG</li>
+                                <li>Thức ăn cho thú cưng |</li>
+                                <li>Phụ kiện cho thú cưng |</li>
+                                <li>Vệ sinh cho thú cưng | Quần áo thú cưng |</li>
+                                <li>Chăm sóc sức khỏe |</li>
+                                <li>Làm đẹp cho thú cưng | Khác </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="foot-3">
+            <table>
+                <tr>
+                    <td>
+                        <div class="ul-f3">
+                            <ul>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">CHĂM SÓC KHÁCH HÀNG</li>
+                                <li>Trung Tâm Trợ Giúp</li>
+                                <li>Shopee Blog</li>
+                                <li>Shopee Mall</li>
+                                <li>Hướng Dẫn Mua Hàng</li>
+                                <li>Hướng Dẫn Bán Hàng</li>
+                                <li>Thanh Toán</li>
+                                <li>Shopee Xu</li>
+                                <li>Vận Chuyển</li>
+                                <li>Trả Hàng & Hoàn Tiền</li>
+                                <li>Chăm Sóc Khách Hàng</li>
+                                <li>Chính Sách Bảo Hành</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ul-f3">
+                            <ul>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">VỀ SHOPEE</li>
+                                <li>Giới Thiệu Về Shopee Việt Nam </li>
+                                <li>Tuyển Dụng </li>
+                                <li>Điều Khoản Shopee</li>
+                                <li>Chính Sách Bảo Mật</li>
+                                <li>Chính Hãng</li>
+                                <li>Kênh Người Bán </li>
+                                <li>Flash Sales</li>
+                                <li>Chương Trình Tiếp Thị Liên Kết Shopee</li>
+                                <li>Liên Hệ Với Truyền Thông</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="pay-ship">
+                        <div class="ul-f3">
+                            <ul>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">THANH TOÁN</li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212029.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212047.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212059.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212105.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212111.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212120.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212131.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212138.png" />
+                                </li>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">ĐƠN VỊ VẬN CHUYỂN</li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212833.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212847.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212857.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212905.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212913.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212919.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212931.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 213258.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 213316.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 213331.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 213344.png" />
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ul-f3">
+                            <ul>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">THEO DÕI CHÚNG TÔI TRÊN</li>
+                                <li>
+                                    <div style="display: flex;">
+                                        <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214725.png" style="width: 22px; height: 25px; position: relative; top: 5px;" />
+                                        <p style="margin: 0;">Facebook</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214733.png" style="width: 22px; height: 25px; position: relative; top: 5px;" />
+                                        <p style="margin: 0;">Instagram</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214739.png" style="width: 22px; height: 25px; position: relative; top: 5px;" />
+                                        <p style="margin: 0;">Linkedln</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ul-f3">
+                            <ul>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">TẢI ỨNG DỤNG SHOPEE NGAY</li>
+                                <li>
+                                    <table class="install">
+                                        <tr>
+                                            <td rowspan="3" style="width: 100px;"><img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214751.png" style="width: 90px; height: 90px;" /></td>
+                                            <td><img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214800.png" style="width: 80px; height: 25px;" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214808.png" style="width: 80px; height: 25px;" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214819.png" style="width: 80px; height: 25px;" /></td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="foot-4">
+            <p>© 2023 Shopee. Tất cả các quyền được bảo lưu.</p>
+            <p>
+                Quốc gia & Khu vực:
+                Singapore |
+                Indonesia |
+                Đài Loan |
+                Thái Lan |
+                Malaysia |
+                Việt Nam |
+                Philippines |
+                Brazil |
+                México |
+                Colombia |
+                Chile
+            </p>
+        </div>
+
+        <div class="foot-5">
+            <div class="f5-div1">
+                <p>CHÍNH SÁCH BẢO MẬT</p>
+                <span>|</span>
+                <p>QUY CHẾ HOẠT ĐỘNG</p>
+                <span>|</span>
+                <p>CHÍNH SÁCH VẬN CHUYỂN</p>
+                <span>|</span>
+                <p>CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN</p>
+            </div>
+            <div class="f5-div2">
+                <img src="http://online.gov.vn/Content/EndUser/LogoCCDVSaleNoti/logoCCDV.png" alt="Alternate Text" />
+                <img src="http://online.gov.vn/Content/EndUser/LogoCCDVSaleNoti/logoCCDV.png" alt="Alternate Text" />
+                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-22 202559.png" alt="Alternate Text" style="width: 45px; height: 45px;" />
+            </div>
+            <div class="f5-div3">
+                <p>Công ty TNHH Shopee</p>
+                <p>Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Khánh, Quận Ba Đình, Thành phố Hà Nội, Việt Nam. Tổng đài hỗ trợ: 19001221 - Email: cskh@hotro.shopee.vn</p>
+                <p>Chịu Trách Nhiệm Quản Lý Nội Dung: Nguyễn Đức Trí - Điện thoại liên hệ: 024 73081221 (ext 4678)</p>
+                <p>Mã số doanh nghiệp: 0106773786 do Sở Kế hoạch & Đầu tư TP Hà Nội cấp lần đầu ngày 10/02/2015</p>
+                <p>© 2015 - Bản quyền thuộc về Công ty TNHH Shopee</p>
+            </div>
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

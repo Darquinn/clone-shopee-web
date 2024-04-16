@@ -1,0 +1,62 @@
+﻿@model IEnumerable<FINAL.Models.Cagetories>
+
+<div class="header">
+    <p>@Html.ActionLink(" Tất Cả Danh Mục", "StoreHome")</p>
+</div>
+<div>
+    <ul style="list-style-type: none;" id="div-u">
+        @{
+            foreach (var item in Model)
+            {
+                <li>
+                    @Html.ActionLink(item.CagetoryName, "StoreHome", "Store", new { category = item.CagetoryID }, "")
+                </li>
+            }
+        }
+    </ul>
+</div>
+
+
+<style>
+    .header p {
+        font-size: 16px;
+        color: #000000CC;
+        font-weight: bold;
+    }
+
+    .header a {
+        color: black;
+    }
+
+        .header a:hover {
+            text-decoration: none;
+        }
+
+    ul {
+        padding: 0px;
+    }
+
+        ul li {
+            padding: 5px;
+            list-style: none;
+            font-size: 14px;
+            color: #333333;
+        }
+            ul li a{
+                color: lightslategrey;
+            }
+            ul li a:hover {
+                color: orangered;
+                text-decoration: none;
+            }
+
+    .title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #EE4D2D;
+    }
+
+    ul .title:hover {
+        color: #EE4D2D;
+    }
+</style>

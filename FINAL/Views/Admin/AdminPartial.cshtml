@@ -1,0 +1,50 @@
+﻿<div>
+    <ul>
+        <li class="title">Quản Lý Đơn Hàng</li>
+        <li>@Html.ActionLink("Tất Cả", "OrderList", "Admin")</li>
+        <li>Đơn Hủy</li>
+        <li>Trả Hàng/Hoàn Tiền</li>
+    </ul>
+</div>
+<div>
+    <ul>
+        <li class="title">Quản Lý Sản Phẩm</li>
+        <li>@Html.ActionLink("Tất Cả Sản Phẩm", "ProductsList", "Admin") </li>
+        <li>@Html.ActionLink("Thêm Sản Phẩm", "Create", "Admin") </li>
+        <li>Sản Phẩm Vi Phạm</li>
+        <li>Cài Đặt Sản Phẩm</li>
+    </ul>
+</div>
+
+<style>
+    ul li {
+        padding: 5px;
+        list-style: none;
+        font-size: 13px;
+        color: #333333;
+    }
+
+        ul li:hover {
+            color: orangered;
+        }
+
+    ul li a{
+        text-decoration: none;
+        font-size: 13px;
+        color: #333333;
+    }
+
+        ul li a:hover {
+            color: orangered;
+        }
+
+    .title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #999999;
+    }
+
+    ul .title:hover {
+        color: #999999;
+    }
+</style>

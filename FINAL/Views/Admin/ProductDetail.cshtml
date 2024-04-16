@@ -1,0 +1,258 @@
+﻿@model FINAL.Models.Products
+
+@{
+    ViewBag.Title = "@Model.ProName";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+    
+}
+
+@{
+    FINAL.Models.ShopeeEntities db = new FINAL.Models.ShopeeEntities();
+
+}
+<div class="pro-detail">
+    <div class="pro-detail-head">
+        <p>@Html.ActionLink("Shopee", "TrangChu", "Home")</p>
+        <span>></span>
+        <p>@Html.ActionLink("Thời Trang Nam", "StoreHome","Store")</p>
+        <span>></span>
+        <p>
+            @{
+                var phanLoai = db.Cagetories.Find(Model.CagetoryID);
+                if (phanLoai != null)
+                {
+                    <span>@phanLoai.CagetoryName</span>
+                }
+            }
+        </p>
+        <span>></span>
+        <p style="color: black;">@Model.ProName</p>
+    </div>
+    <div class="pro-detail-1">
+        <div class="pro-detail-1-1">
+            <div><img src="@Model.ProImage" alt="Alternate Text" /></div>
+        </div>
+        <div class="pro-detail-1-2">
+            <div style="display: flex;">
+                <p style="font-size: 20px; color: #000000cc;">
+                    <span style="margin-right: 7px; padding: 5px; color: white; background-color: #ee4d2d; font-size: 12px; text-align: center; border-radius: 3px;">Yêu Thích</span>
+                    @Model.ProName
+                </p>
+            </div>
+            <div><img src="~/Content/Shopee/Ảnh chụp màn hình 2023-11-13 201814.png" alt="Alternate Text" style="width: 665px; height: 36px;" /></div>
+            <div><p style="padding: 15px 20px; font-size: 30px; color: #ee4d2d;"><sup style="text-decoration: underline;">đ</sup>@string.Format("{0:#,0}", Model.Price)</p></div>
+            <div style="display: flex;">
+                <div style="width: 110px;"><p style="color: #757575; ">Mã Giảm Giá Của Shop</p></div>
+                <div style=" height: 40px; text-align: center; display: flex;">
+                    <div style="margin:10px 5px; width: 70px; height: 22px; background-color: antiquewhite;"><p style="color: #ee4d2d;">Giảm <sup>đ</sup>5k</p></div>
+                    <div style="margin: 10px 5px; width: 70px; height: 22px; background-color: antiquewhite;"><p style="color: #ee4d2d;">6% GIẢM</p></div>
+                    <div style="margin: 10px 5px; width: 70px; height: 22px; background-color: antiquewhite;"><p style="color: #ee4d2d;">10% GIẢM</p></div>
+                </div>
+            </div>
+            <div style="display: flex;">
+                <div style="width: 110px;"><p style="color: #757575; line-height: 40px;">Bảo Hiểm</p></div>
+                <div style=" height: 40px; text-align: center; display: flex;">
+                    <p style="line-height: 40px;">Bảo hiểm Thời trang</p>
+                    <a href="https://insurance.shopee.vn/ec/ec-pdp.html?from=pdp&product_id=1650882748039998927" style="line-height: 40px; margin-left: 20px;">Tìm hiểu thêm</a>
+                </div>
+            </div>
+            <div style="display: flex;">
+                <div style="width: 110px;"><p style="color: #757575; line-height: 40px;">Màu</p></div>
+                <div style="width: 80px; height: 40px; text-align: center; box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;">
+                    <p style="line-height: 40px; ">
+                        @{
+                            @*var color = db.Colors;
+                        foreach (var item in color)
+                        {
+                        <p>@item.ColorName</p>
+                        }*@
+
+                            var mau = db.Colors.Find(Model.ProColor);
+                            if (mau != null)
+                            {
+                                <span>@mau.ColorName</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+            <div style="display: flex;">
+                    <div style="width: 110px;"><p style="color: #757575; line-height: 40px;">Số Lượng </p></div>
+                <div>
+                    <p style="line-height: 40px; ">1</p>
+                </div>
+            </div>
+            <div class="cart">
+                <a href="@Url.Action("AddToCart", "Cart", new { idPro = Model.ProID, URL = Request.Url.ToString() })">
+                    <div class="addtocart">
+                        <p><i style='font-size:20px; margin-right: 10px;' class='fas'>&#xf217;</i>Thêm Vào Giỏ Hàng</p>
+                    </div>
+                </a>
+                <div class="buynow">
+                    <p>Mua Ngay</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pro-detail-2">
+        <div class="pro-detail-2-1"><p>CHI TIẾT SẢN PHẨM</p></div>
+        <div class="pro-detail-2-2">
+            <div class="pro-detail-2-2-1">
+                <div class="pro-detail-2-2-1-1"><p>Danh Mục</p></div>
+                <div class="pro-detail-head">
+                    <p>Shopee</p>
+                    <span>></span>
+                    <p>Thời Trang Nam</p>
+                    <span>></span>
+                    <p>
+                        @{
+                            var phanLoai2 = db.Cagetories.Find(Model.CagetoryID);
+                            if (phanLoai2 != null)
+                            {
+                                <span>@phanLoai2.CagetoryName</span>
+                            }
+                        }
+                    </p>
+                    <span>></span>
+                    <p style="color: black;">@Model.ProName</p>
+                </div>
+            </div>
+            <div class="pro-detail-2-2-1">
+                <div class="pro-detail-2-2-1-1"><p>Thương Hiệu</p></div>
+                <div class="pro-detail-head">
+                    <p>
+                        @{
+                            var ncc = db.Suppliers.Find(Model.ProSupplier);
+                            if (mau != null)
+                            {
+                                <span>@ncc.SupName</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+            <div class="pro-detail-2-2-1">
+                <div class="pro-detail-2-2-1-1"><p>Phân Loại Hàng</p></div>
+                <div class="pro-detail-head">
+                    <p style="color: black;">
+                        @{
+                            var phanLoai3 = db.Cagetories.Find(Model.CagetoryID);
+                            if (phanLoai3 != null)
+                            {
+                                <span>@phanLoai3.CagetoryName</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+            <div class="pro-detail-2-2-1">
+                <div class="pro-detail-2-2-1-1"><p>Màu</p></div>
+                <div class="pro-detail-head">
+                    <p style="color: black;">
+                        @{
+                            var mau2 = db.Colors.Find(Model.ProColor);
+                            if (phanLoai3 != null)
+                            {
+                                <span>@mau2.ColorName</span>
+                            }
+                        }
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="pro-detail-2-1"><p>MÔ TẢ SẢN PHẨM</p></div>
+    </div>
+</div>
+
+
+<style>
+a:hover{
+    text-decoration: none;
+}
+    .pro-detail {
+        margin: 0px auto;
+        width: 1200px;
+        margin-top: 144px;
+    }
+
+    .pro-detail-head {
+        margin-bottom: 20px;
+        display: flex;
+        font-size: 13px;
+    }
+        .pro-detail-head p{
+            margin: 0px 5px;
+            color: #0055aa;
+        }
+
+    .pro-detail-1 {
+        margin: 0px auto;
+        width: 1200px;
+        background-color: white;
+        display: flex;
+    }
+        .pro-detail-1-1{
+            padding: 15px;
+        }
+            .pro-detail-1-1 img{
+                width: 450px;
+                height: 450px;
+            }
+        .pro-detail-1-2{
+            padding: 20px 35px 0px 20px;
+            width: 832px;
+        }
+
+    .pro-detail-2{
+        padding: 15px;
+        margin: 0px auto;
+        margin-top: 25px;
+        width: 1200px;
+        background-color: white;
+    }
+        .pro-detail-2-1{
+            padding: 14px;
+            font-size: 18px;
+        }
+        .pro-detail-2-2 {
+            padding: 20px 15px 15px;
+        }
+            .pro-detail-2-2-1{
+                display: flex;
+            }
+                .pro-detail-2-2-1-1{
+                    width: 140px;
+                    color: #00000066;
+                }
+
+        .cart{
+            display: flex;
+        }
+            .addtocart{
+                margin-right: 15px;
+                width: 199px;
+                height: 48px;
+                text-align: center;
+                border: 1px solid orangered;
+                border-radius: 2px;
+                background-color: #ff57221a;
+            }
+                .addtocart p{
+                    margin: 0;
+                    line-height: 48px;
+                    color: orangered;
+                }
+            .buynow {
+                width: 180px;
+                height: 48px;
+                text-align: center;
+                border-radius: 2px;
+                background-color: #ee4d2d;
+            }
+                .buynow p {
+                    margin: 0;
+                    line-height: 48px;
+                    color: white;
+                }
+</style>

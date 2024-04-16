@@ -1,0 +1,103 @@
+﻿@model IEnumerable<FINAL.Models.Orders>
+
+@{
+    ViewBag.Title = "OrderList";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content-1">
+    content111111
+</div>
+
+<div class="content-2">
+    <div class="c2-1">
+        <div><p>Tất cả</p></div>
+        <div><p>Chờ xác nhận</p></div>
+        <div><p>Chờ lấy hàng</p></div>
+        <div><p>Đang giao</p></div>
+        <div><p>Đã giao</p></div>
+        <div><p>Đơn hủy</p></div>
+        <div><p>Trả hàng/Hoàn tiền</p></div>
+        <div><p>Giao không thành công</p></div>
+    </div>
+    <div class="c2-2">
+        <div class="c2-2-1">
+            <table>
+                <tr>
+                    <td>
+                        <div style="margin-left: 25px;"><p style="font-size: 18px; font-weight: bold;">0 Đơn Hàng</p></div>
+                    </td>
+                    <td style="width: 700px;"></td>
+                    <td class="td2" style="display: flex; float: right;">
+                        <div>
+                            <a href="@Url.Action("OrderCreate","Admin")" >
+                                <input type="button" name="add" value="+ Thêm đơn hàng mới" style="cursor: pointer" />
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="c2-2-2">
+            <div>
+                <div class="product-list">
+                    <table class="table">
+                        <tr class="header">
+                            <th style="width: 100px;">
+                                Mã Đơn Hàng
+                            </th>
+                            <th style="width: 180px;">
+                                Tên Khách Hàng
+                            </th>
+                            <th style="width: 180px;">
+                                Ngày Đặt Hàng
+                            </th>
+                            <th style="width: 180px;">
+                                Tổng Giá Trị Đơn Hàng
+                            </th>
+                            <th style="width: 180px;">
+                                Thao Tác
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            FINAL.Models.ShopeeEntities db = new FINAL.Models.ShopeeEntities();
+                            <tr class="list-item">
+                                <td style="font-weight: bold; color: grey">
+                                    @Html.DisplayFor(modelItem => item.OrderID)
+                                </td>
+                                <td style="font-weight: bold; font-style: italic">
+                                    @Html.DisplayFor(modelItem => item.CusName)
+                                </td>
+                                <td>
+                                    @string.Format("{0:dd-MM-yyyy}", item.Date)
+                                </td>
+                                <td>
+                                    <sup>đ</sup>@string.Format("{0:#,0}", item.TotalCost)
+                                </td>
+                               
+                                <td class="thao-tac" style="color: darkgrey;">
+                                    @Html.ActionLink("Chi tiết", "OrderDetail", new { id = item.OrderID }) |
+                                    @Html.ActionLink("Cập nhật", "OrderUpdate", new { id = item.OrderID }) |
+                                    @Html.ActionLink("Xóa", "OrderRemove", new { id = item.OrderID })
+                                </td>
+                            </tr>
+                         }
+
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .thao-tac a{
+        color: royalblue;
+        text-decoration: none;
+    }
+</style>

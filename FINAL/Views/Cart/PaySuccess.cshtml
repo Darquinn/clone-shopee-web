@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "PaySuccess";
+    Layout = "~/Views/Shared/_LayoutCart.cshtml";
+}
+
+<div class="pay-box">
+    <div class="pay-box-1">
+        <p><i style='font-size:16px' class='fas'>&#xf058;</i>Bạn Đã Thanh Toán Thành Công</p>
+    </div>
+    <div class="pay-box-2">
+        <p>@Html.ActionLink("Tiếp Tục Mua Hàng","StoreHome","Store")</p>
+    </div>
+</div>
+
+
+
+<style>
+    .pay-box{
+        margin: 0px auto;
+        width: 400px;
+        background-color: white;
+        font-size: 20px;
+    }
+        .pay-box-1{
+            text-align: center;
+        }
+            .pay-box-1 p{
+                color: #ee4d2d;
+            }
+            .pay-box-1 i{
+                margin: 0 5px;
+            }
+        .pay-box-2{
+            text-align: center;
+        }
+            .pay-box-2 a{
+                text-decoration: none;
+            }
+</style>

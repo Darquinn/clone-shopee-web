@@ -1,0 +1,218 @@
+﻿@using FINAL.Models;
+@model List<CartModel>
+
+@{
+    ViewBag.Title = "HomeCart";
+    Layout = "~/Views/Shared/_LayoutCart.cshtml";
+}
+
+<div class="cart-1">
+    <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/d9e992985b18d96aab90969636ebfd0e.png" />
+    <p>Nhấn vào mục Mã giảm giá ở cuối trang để hưởng miễn phí vận chuyển bạn nhé!</p>
+</div>
+<div class="cart-2">
+    @if (Model == null)
+    {
+        <h1>Giỏ Hàng Rỗng</h1>
+    }
+    else
+    {
+        <table>
+            <tr style="border: 1px solid #d0011b; ">
+                <th><div style="width: 25px; height: 17px; padding: 0px 12px 0px 20px;"></div></th>
+                <th style="width: 506px;"><p style="float: left;">Sản Phẩm</p></th>
+                <th style="width: 173px;"><p>Đơn Giá</p></th>
+                <th style="width: 168px;"><p>Số Lượng</p></th>
+                <th style="width: 114px;"><p>Số Tiền</p></th>
+                <th style="width: 139px;"><p>Thao Tác</p></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                ShopeeEntities db = new ShopeeEntities();
+                <tr style="border: 1px solid lightgrey; margin-bottom: 12px;">
+                    <td></td>
+                    <td colspan="5">
+                        <div style="display:flex;">
+                            <div style="margin: 2px 7px 0px 0px; width: 30px; height: 15px; background-color: #d0011b; border-radius: 3px;"><p style="margin:0 4px; color: white; font-family: sans-serif; font-size: 12px;">Mall</p></div>
+                            <p>@item.CartSupplier</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="cart-td-1" style="padding: 16px 0px;">
+                        <div class="cart-td-1-box">
+                            <div class="cart-td-1-box-1"><img src="@item.CartImage" alt="Alternate Text" /></div>
+                            <div class="cart-td-1-box-2">
+                                <p style="width: 300px; height: 60px; margin: 5px 0;">@item.CartName</p>
+                                <p style="font-size: 12px;"><img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/91167e001db60b62d4f85c3e0ea919b6.png" alt="Alternate Text" style="width: 15px; height: 14px;" />7 Ngày Miễn Phí Trả Hàng</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td><sup style="text-decoration: underline;">đ</sup>@string.Format("{0:#,0}", item.CartPrice)</td>
+                    <td>@item.CartQuantity</td>
+                    <td style="color: #ee4d2d;"><sup style="text-decoration: underline;">đ</sup>@string.Format("{0:#,0}", item.CartTotalCost)</td>
+                    <td>
+                       @Html.ActionLink("Xóa", "RemoveCart", new { @id = item.CartID })
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>
+
+<div class="cart-3">
+    @{Html.RenderAction("PartialPay", "Cart");}
+</div>
+
+
+
+<style>
+ 
+    .cart-1 {
+        padding: 12px 16px;
+        margin-bottom: 10px;
+        background-color: white;
+        display: flex;
+        border: 1px solid yellow;
+    }
+
+        .cart-1 img {
+            margin-right: 8px;
+            width: 24px;
+            height: 20px;
+        }
+
+        .cart-1 p {
+            margin: 0;
+            color: #222222;
+        }
+
+    .cart-2 {
+    }
+
+        .cart-2 table {
+            width: 100%;
+        }
+
+            .cart-2 table tr {
+                padding: 0px 20px;
+                width: 1160px;
+                height: 55px;
+                background-color: white;
+                box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+            }
+
+                .cart-2 table tr th {
+                    text-align: center;
+                }
+
+                .cart-2 table tr td {
+                    text-align: center;
+                }
+
+                .cart-2 table tr th p {
+                    margin: 0;
+                    color: #888888;
+                    font-weight: normal;
+                }
+
+    .cart-td-1 {
+    }
+
+    .cart-td-1-box {
+        width: 350px;
+        display: flex;
+    }
+
+    .cart-td-1-box-1 {
+    }
+
+    .cart-td-1-box img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cart-td-1-box p {
+        margin: 0;
+    }
+
+    .cart-td-1-box-2 {
+        padding: 0px 20px 0 10px;
+        width: 350px;
+    }
+
+    .cart-3 {
+        margin-top: 12px;
+        background-color: white;
+        position: sticky;
+        bottom: 0px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+        .cart-3 table {
+            width: 1200px;
+        }
+
+        .cart-3 tr {
+        }
+
+            .cart-3-td1 {
+                width: 650px;
+                font-size: 16px;
+            }
+                .cart-3-td1-1 {
+                    width: 25.33px;
+                    height: 17.33px;
+                    margin: 0 12px 0 20px;
+                }
+
+                    .cart-3-td1-1 p {
+                        margin: 0;
+                        line-height: 34px;
+                    }
+
+                .cart-3-td1-2 p {
+                    padding: 1px 6px;
+                    margin: 0;
+                    text-align: center;
+                    line-height: 34px;
+                }
+
+                .cart-3-td1-3 {
+                    margin: 0 8px;
+                    padding: 1px 6px;
+                    line-height: 34px;
+                }
+
+                .cart-3-td1-4 {
+                    padding: 1px 6px;
+                    line-height: 34px;
+                }
+                    .cart-3-td1 p{
+                        margin: 0px;
+                    }
+
+            .cart-3-td2 {
+                padding: 12px 0px;
+                width: 350px;
+                display: flex;
+            }
+
+                .cart-3-td2 p {
+                    margin: 0;
+                    font-size: 16px;
+                }
+            .cart-3-td3{
+                text-align: center;
+            }
+                .cart-3-td3 input{
+                    width: 100%;
+                    height: 40px;
+                    background-color: #ee4d2d;
+                    color: white;
+                    border: none;
+                    outline: none;
+                    border-radius: 3px;
+                }
+</style>

@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Đăng Nhập Tài Khoản - Mua Sắm Online | Shopee Việt Nam";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@{
+    ViewBag.active = 2;
+}
+
+<div class="main-content">
+    <div class="log-in-box">
+        <div style="margin: 0px auto; width: 340px; height: 80px; line-height: 80px; font-size: 20px;">Đăng nhập</div>
+        <div class="sign-up-form" style="top: 87px;">
+            <form role="form" method="post"> 
+                <div class="phone-input">
+                    <input type="text" placeholder="Email/Số điện thoại/Tên đăng nhập" name="username" value="@ViewBag.username"/>
+                </div>
+                <div class="phone-input">
+                    <input type="password" placeholder="Mật khẩu" name="password"/>
+                </div>
+                <div class="next-btn">
+                    <button type="submit" class="btn btn-success">ĐĂNG NHẬP</button>
+                </div>
+                <p class="text-danger" style="color: red; font-size: 12px;">@ViewBag.error</p>
+            </form>
+            <div class="sign-up-form-2">
+                <div>Quên mật khẩu</div>
+                <div>Đăng nhập với SMS</div>
+            </div>
+            <div class="or">
+                <hr style="width: 130px; height: 0px; color: lightgray;" />
+                <div>HOẶC</div>
+                <hr style="width: 130px; height: 0px; color: lightgray;" />
+            </div>
+            <div class="sign-up-form-4">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-27 164714.png" alt="Alternate Text" style="width: 25px; height: 25px;" />
+                            <div>Facebook</div>
+                        <td>
+                            <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-27 164734.png" alt="Alternate Text" style="width: 25px; height: 25px;" />
+                            <div><a href="https://www.bing.com/ck/a?!&&p=5d077e8ff19485faJmltdHM9MTcwMDUyNDgwMCZpZ3VpZD0wM2NjNGEyOC1jMjQ2LTZmNjUtMDFjYi01ODVkYzMyMDZlNzAmaW5zaWQ9NTE5Nw&ptn=3&ver=2&hsh=3&fclid=03cc4a28-c246-6f65-01cb-585dc3206e70&psq=link+google&u=a1aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8_L2xpbmtz&ntb=1">Google</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="sign-up-form-6" style="margin-top: 38px;">
+                <div>
+                    Bạn mới biết đến Shopee?
+                    <span>@Html.ActionLink("Đăng ký","Signup","Login")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

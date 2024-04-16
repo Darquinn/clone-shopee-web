@@ -1,0 +1,222 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<FINAL.Models.Products>
+
+@{
+    ViewBag.Title = "Shopee - Kênh Người Bán";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content-1">
+    @using (Html.BeginForm("ProductsList", "Admin", FormMethod.Get))
+    {
+        <table>
+            <tr>
+                <td>
+                    @*Tên Sản phẩm : <input type="text" name="SearchString" />
+                        <input type="submit" value="Tìm kiếm" class="btn btn-warning" />*@
+                    <div style="display: flex; padding: 10px 20px;">
+                        <div style="padding: 7px 0px; width: 100px; height: 35px;"><p style="margin: 0; font-size: 14px; line-height: 35px; box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; ">Tên sản phẩm</p></div>
+                        <div class="searchbar-input"><input type="text" name="SearchString" placeholder="Please input at lease first 2 characters of word" class="srch-text" /></div>
+                    </div>
+                    <div style="margin: 0px 20px;"><button type="submit" class="btn btn-warning" />Tìm</div>
+
+                </td>
+                <td>
+                    Đơn giá từ : <input type="number" name="min" />
+                    --đến : <input type="number" name="max" />
+                    <input type="submit" value="Tìm giá" class="btn btn-warning" />
+                </td>
+            </tr>
+        </table>
+    }
+
+</div>
+
+<div class="content-2">
+    <div class="c2-1">
+        <div><p>Tất cả</p></div>
+        <div><p>Đang hoạt động</p></div>
+        <div><p>Hết hàng</p></div>
+        <div><p>Chờ duyệt</p></div>
+        <div><p>Vi phạm</p></div>
+        <div><p>Đã ẩn</p></div>
+    </div>
+    <div class="c2-2">
+        <div class="c2-2-1">
+            <table>
+                <tr>
+                    <td>
+                        <div style="margin-left: 25px;">
+                            @*<div><p style="font-size: 18px; font-weight: bold;">0 Sản Phẩm</p></div>
+                            <div><p style="font-size: 12px; color: #999999;">Có thể đăng tải thêm sản phẩm</p></div>*@
+                        </div>
+                    </td>
+                    <td style="width: 685px;"></td>
+                    <td class="td2" style="display: flex;">
+                        <div><p>Tối ưu sản phẩm</p></div>
+                        <div>
+                            <a href="@Url.Action("Create", "Admin")">
+                                <input type="button" name="add" value="+ Thêm 1 sản phẩm mới" style="cursor: pointer" />
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="c2-2-2">
+            <div>
+                <div class="product-list">
+                    <table class="table">
+                        <tr class="header">
+                            <th style="width: 100px;">
+                                SKU
+                            </th>
+                            <th style="width: 180px;">
+                                Hình Sản Phẩm
+                            </th>
+                            <th style="width: 180px;">
+                                Tên Sản Phẩm
+                            </th>
+                            <th style="width: 180px;">
+                                Nhà Cung Cấp
+                            </th>
+                            <th style="width: 180px;">
+                                Phân Loại Sản Phẩm
+                            </th>
+                            <th style="width: 180px;">
+                                Màu Sắc
+                            </th>
+                            <th style="width: 180px;">
+                                Giá Sản Phẩm
+                            </th>
+                            <th style="width: 180px;">
+                                Thao Tác
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            FINAL.Models.ShopeeEntities db = new FINAL.Models.ShopeeEntities();
+                            <tr class="list-item">
+                                <td style="font-weight: bold; color: grey">
+                                    @Html.DisplayFor(modelItem => item.ProID)
+                                </td>
+                                <td>
+                                    <div>
+                                        <img src="@item.ProImage" width="60" />
+                                        <p class="thao-tac" style="margin: 0px;">@Html.ActionLink("Chỉnh sửa ảnh", "UpdateImage", new { id = item.ProID })</p>
+                                    </div>
+                                </td>
+
+                                <td style="font-weight: bold; font-style: italic">
+                                    @Html.DisplayFor(modelItem => item.ProName)
+                                </td>
+                                <td>
+                                    @{
+                                        var nhaCungCap = db.Suppliers.Find(item.ProSupplier);
+                                        if (nhaCungCap != null)
+                                        {
+                                            <span>@nhaCungCap.SupName</span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @{
+                                        var phanLoai = db.Cagetories.Find(item.CagetoryID);
+                                        if (phanLoai != null)
+                                        {
+                                            <span>@phanLoai.CagetoryName</span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @{
+                                        var mau = db.Colors.Find(item.ProColor);
+                                        if (mau != null)
+                                        {
+                                            <span>@mau.ColorName</span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <sup>đ</sup>@string.Format("{0:#,0}", item.Price)
+                                </td>
+
+                                <td class="thao-tac" style="color: darkgrey;">
+                                    @Html.ActionLink("Chi tiết", "ProductDetail", new { id = item.ProID }) |
+                                    @Html.ActionLink("Cập nhật", "Update", new { id = item.ProID })
+                                    @Html.ActionLink("Xóa", "Remove", new { id = item.ProID })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="page-list">
+            @*<div><p style="margin: 0;">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</p></div>*@
+            @Html.PagedListPager(Model, page => Url.Action("ProductsList", new { page }))
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .thao-tac a {
+        color: royalblue;
+        text-decoration: none;
+    }
+
+    .searchbar-input {
+        margin-top: 7px;
+        width: 364px;
+        height: 35px;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    }
+
+    .srch-text {
+        margin: 0 12px;
+        width: 340px;
+        height: 30px;
+        outline: none;
+        border: none;
+    }
+
+
+    .pagination-container{
+        padding: 0px 0px 20px;
+    }
+        .pagination {
+            margin: 0 auto;
+            padding: 0px;
+            width: 160px;
+        }
+            .pagination li {
+                padding: 20px 10px;
+                display: inline;
+            }
+                .pagination li a {
+                    font-size: 16px;
+                    color: #00000066;
+                }
+
+                li.active{
+                    padding: 5px 10px;
+                    background-color: #ee4d2d;
+                    border-radius: 3px;
+                }
+                    li.active a {
+                        color: white;
+                    }
+    
+</style>
+
+

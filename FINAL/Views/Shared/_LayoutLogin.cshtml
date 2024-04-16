@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/StyleLogin.css" rel="stylesheet" />
+</head>
+<body>
+
+    <nav>
+        <div class="nav-1">
+            <div class="nav-left">
+                <a href='@Url.Action("TrangChu", "Home")'>
+                    <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-26 225221.png" />
+                </a>
+                @if (ViewBag.active == 1)
+                {
+                    <p>Đăng ký</p>
+                }
+                @if (ViewBag.active == 2)
+                {
+                    <p>Đăng Nhập</p>
+
+                }
+            </div>
+
+            <div class="nav-right">
+                <p>Bạn cần giúp đỡ?</p>
+            </div>
+        </div>
+    </nav>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="foot-3">
+            <table>
+                <tr>
+                    <td>
+                        <div class="ul-f3">
+                            <ul>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">CHĂM SÓC KHÁCH HÀNG</li>
+                                <li>Trung Tâm Trợ Giúp</li>
+                                <li>Shopee Blog</li>
+                                <li>Shopee Mall</li>
+                                <li>Hướng Dẫn Mua Hàng</li>
+                                <li>Hướng Dẫn Bán Hàng</li>
+                                <li>Thanh Toán</li>
+                                <li>Shopee Xu</li>
+                                <li>Vận Chuyển</li>
+                                <li>Trả Hàng & Hoàn Tiền</li>
+                                <li>Chăm Sóc Khách Hàng</li>
+                                <li>Chính Sách Bảo Hành</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td class="pay-ship">
+                        <div class="ul-f3">
+                            <ul>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">THANH TOÁN</li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212029.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212047.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212059.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212105.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212111.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212120.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212131.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212138.png" />
+                                </li>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">ĐƠN VỊ VẬN CHUYỂN</li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212833.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212847.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212857.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212905.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212913.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212919.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 212931.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 213258.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 213316.png" />
+                                </li>
+                                <li>
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 213331.png" />
+                                    <img class="img-logo" src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 213344.png" />
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ul-f3">
+                            <ul>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">THEO DÕI CHÚNG TÔI TRÊN</li>
+                                <li>
+                                    <div style="display: flex;">
+                                        <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214725.png" style="width: 22px; height: 25px; position: relative; top: 5px;" />
+                                        <p>Facebook</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214733.png" style="width: 22px; height: 25px; position: relative; top: 5px;" />
+                                        <p>Instagram</p>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214739.png" style="width: 22px; height: 25px; position: relative; top: 5px;" />
+                                        <p>Linkedln</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ul-f3">
+                            <ul>
+                                <li style="color: black; font-weight: bold; margin: 9px 0px;">TẢI ỨNG DỤNG SHOPEE NGAY</li>
+                                <li>
+                                    <table class="install">
+                                        <tr>
+                                            <td rowspan="3" style="width: 100px;"><img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214751.png" style="width: 90px; height: 90px;" /></td>
+                                            <td><img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214800.png" style="width: 80px; height: 25px;" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214808.png" style="width: 80px; height: 25px;" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-21 214819.png" style="width: 80px; height: 25px;" /></td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="foot-4">
+            <p>© 2023 Shopee. Tất cả các quyền được bảo lưu.</p>
+            <p>
+                Quốc gia & Khu vực:
+                Singapore |
+                Indonesia |
+                Đài Loan |
+                Thái Lan |
+                Malaysia |
+                Việt Nam |
+                Philippines |
+                Brazil |
+                México |
+                Colombia |
+                Chile
+            </p>
+        </div>
+
+        <div class="foot-5">
+            <div class="f5-div1">
+                <p>CHÍNH SÁCH BẢO MẬT</p>
+                <span>|</span>
+                <p>QUY CHẾ HOẠT ĐỘNG</p>
+                <span>|</span>
+                <p>CHÍNH SÁCH VẬN CHUYỂN</p>
+                <span>|</span>
+                <p>CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN</p>
+            </div>
+            <div class="f5-div2">
+                <img src="http://online.gov.vn/Content/EndUser/LogoCCDVSaleNoti/logoCCDV.png" alt="Alternate Text" />
+                <img src="http://online.gov.vn/Content/EndUser/LogoCCDVSaleNoti/logoCCDV.png" alt="Alternate Text" />
+                <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-22 202559.png" alt="Alternate Text" style="width: 45px; height: 45px;" />
+            </div>
+            <div class="f5-div3">
+                <p>Công ty TNHH Shopee</p>
+                <p>Địa chỉ: Tầng 4-5-6, Tòa nhà Capital Place, số 29 đường Liễu Giai, Phường Ngọc Khánh, Quận Ba Đình, Thành phố Hà Nội, Việt Nam. Tổng đài hỗ trợ: 19001221 - Email: cskh@hotro.shopee.vn</p>
+                <p>Chịu Trách Nhiệm Quản Lý Nội Dung: Nguyễn Đức Trí - Điện thoại liên hệ: 024 73081221 (ext 4678)</p>
+                <p>Mã số doanh nghiệp: 0106773786 do Sở Kế hoạch & Đầu tư TP Hà Nội cấp lần đầu ngày 10/02/2015</p>
+                <p>© 2015 - Bản quyền thuộc về Công ty TNHH Shopee</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

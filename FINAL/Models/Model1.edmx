@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShopeeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cagetories">
+          <Key>
+            <PropertyRef Name="CagetoryID" />
+          </Key>
+          <Property Name="CagetoryID" Type="int" Nullable="false" />
+          <Property Name="CagetoryName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="int" Nullable="false" />
+          <Property Name="ColorName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDeID" />
+          </Key>
+          <Property Name="OrderDeID" Type="int" Nullable="false" />
+          <Property Name="OrderDeProID" Type="int" />
+          <Property Name="IDOrder" Type="int" />
+          <Property Name="OrderDeQuan" Type="int" />
+          <Property Name="OrderDePrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="OrderDeDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="CusName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Date" Type="date" />
+          <Property Name="TotalCost" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="OrderAddress" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="int" Nullable="false" />
+          <Property Name="ProName" Type="nvarchar(max)" />
+          <Property Name="CagetoryID" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProImage" Type="nvarchar(max)" />
+          <Property Name="ProSupplier" Type="int" />
+          <Property Name="ProColor" Type="int" />
+          <Property Name="ProOrder" Type="int" />
+          <Property Name="ProStock" Type="int" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupID" />
+          </Key>
+          <Property Name="SupID" Type="int" Nullable="false" />
+          <Property Name="SupName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserEmail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserPass" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="UserAddress" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <Association Name="FK_OrderDetail_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="IDOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Cagetories1">
+          <End Role="Cagetories" Type="Self.Cagetories" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cagetories">
+              <PropertyRef Name="CagetoryID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CagetoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Colors">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Suppliers">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopeeModelStoreContainer">
+          <EntitySet Name="Cagetories" EntityType="Self.Cagetories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OrderDetail_Orders" Association="Self.FK_OrderDetail_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Cagetories1" Association="Self.FK_Products_Cagetories1">
+            <End Role="Cagetories" EntitySet="Cagetories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Colors" Association="Self.FK_Products_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Orders" Association="Self.FK_Products_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Suppliers" Association="Self.FK_Products_Suppliers">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShopeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="Int32" Nullable="false" />
+          <Property Name="ProName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CagetoryID" Type="Int32" />
+          <NavigationProperty Name="Cagetories" Relationship="ShopeeModel.FK_Products_Cagetories1" FromRole="Products" ToRole="Cagetories" />
+          <Property Name="ProSupplier" Type="Int32" />
+          <NavigationProperty Name="Suppliers" Relationship="ShopeeModel.FK_Products_Suppliers" FromRole="Products" ToRole="Suppliers" />
+          <Property Name="ProColor" Type="Int32" />
+          <NavigationProperty Name="Colors" Relationship="ShopeeModel.FK_Products_Colors" FromRole="Products" ToRole="Colors" />
+          <Property Name="ProOrder" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="ShopeeModel.FK_Products_Orders" FromRole="Products" ToRole="Orders" />
+          <Property Name="ProStock" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="ShopeeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="Cagetories" EntityType="ShopeeModel.Cagetories" />
+          <AssociationSet Name="FK_Products_Cagetories1" Association="ShopeeModel.FK_Products_Cagetories1">
+            <End Role="Cagetories" EntitySet="Cagetories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Suppliers" EntityType="ShopeeModel.Suppliers" />
+          <AssociationSet Name="FK_Products_Suppliers" Association="ShopeeModel.FK_Products_Suppliers">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Colors" EntityType="ShopeeModel.Colors" />
+          <AssociationSet Name="FK_Products_Colors" Association="ShopeeModel.FK_Products_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Orders" EntityType="ShopeeModel.Orders" />
+          <AssociationSet Name="FK_Products_Orders" Association="ShopeeModel.FK_Products_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="ShopeeModel.Users" />
+          <EntitySet Name="OrderDetail" EntityType="ShopeeModel.OrderDetail" />
+          <AssociationSet Name="FK_OrderDetail_Orders" Association="ShopeeModel.FK_OrderDetail_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cagetories">
+          <Key>
+            <PropertyRef Name="CagetoryID" />
+          </Key>
+          <Property Name="CagetoryID" Type="Int32" Nullable="false" />
+          <Property Name="CagetoryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Products_Cagetories1" FromRole="Cagetories" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_Products_Cagetories1">
+          <End Type="ShopeeModel.Cagetories" Role="Cagetories" Multiplicity="0..1" />
+          <End Type="ShopeeModel.Products" Role="Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cagetories">
+              <PropertyRef Name="CagetoryID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CagetoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupID" />
+          </Key>
+          <Property Name="SupID" Type="Int32" Nullable="false" />
+          <Property Name="SupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Products_Suppliers" FromRole="Suppliers" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_Products_Suppliers">
+          <End Type="ShopeeModel.Suppliers" Role="Suppliers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ShopeeModel.Products" Role="Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProSupplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="ColorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Products_Colors" FromRole="Colors" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_Products_Colors">
+          <End Type="ShopeeModel.Colors" Role="Colors" Multiplicity="0..1" />
+          <End Type="ShopeeModel.Products" Role="Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="CusName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="TotalCost" Type="Int32" />
+          <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Products_Orders" FromRole="Orders" ToRole="Products" />
+          <Property Name="OrderAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderDetail" Relationship="ShopeeModel.FK_OrderDetail_Orders" FromRole="Orders" ToRole="OrderDetail" />
+        </EntityType>
+        <Association Name="FK_Products_Orders">
+          <End Type="ShopeeModel.Orders" Role="Orders" Multiplicity="0..1" />
+          <End Type="ShopeeModel.Products" Role="Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ProOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDeID" />
+          </Key>
+          <Property Name="OrderDeID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDeProID" Type="Int32" />
+          <Property Name="IDOrder" Type="Int32" />
+          <Property Name="OrderDeQuan" Type="Int32" />
+          <Property Name="OrderDePrice" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Orders" Relationship="ShopeeModel.FK_OrderDetail_Orders" FromRole="OrderDetail" ToRole="Orders" />
+          <Property Name="OrderDeDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_OrderDetail_Orders">
+          <End Type="ShopeeModel.Orders" Role="Orders" Multiplicity="0..1" />
+          <End Type="ShopeeModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="IDOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShopeeModelStoreContainer" CdmEntityContainer="ShopeeEntities">
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ShopeeModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProStock" ColumnName="ProStock" />
+                <ScalarProperty Name="ProOrder" ColumnName="ProOrder" />
+                <ScalarProperty Name="ProColor" ColumnName="ProColor" />
+                <ScalarProperty Name="ProSupplier" ColumnName="ProSupplier" />
+                <ScalarProperty Name="CagetoryID" ColumnName="CagetoryID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProImage" ColumnName="ProImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cagetories">
+            <EntityTypeMapping TypeName="ShopeeModel.Cagetories">
+              <MappingFragment StoreEntitySet="Cagetories">
+                <ScalarProperty Name="CagetoryName" ColumnName="CagetoryName" />
+                <ScalarProperty Name="CagetoryID" ColumnName="CagetoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="ShopeeModel.Suppliers">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="SupName" ColumnName="SupName" />
+                <ScalarProperty Name="SupID" ColumnName="SupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="ShopeeModel.Colors">
+              <MappingFragment StoreEntitySet="Colors">
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ShopeeModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderAddress" ColumnName="OrderAddress" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CusName" ColumnName="CusName" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ShopeeModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetail">
+            <EntityTypeMapping TypeName="ShopeeModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="OrderDeDate" ColumnName="OrderDeDate" />
+                <ScalarProperty Name="OrderDePrice" ColumnName="OrderDePrice" />
+                <ScalarProperty Name="OrderDeQuan" ColumnName="OrderDeQuan" />
+                <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+                <ScalarProperty Name="OrderDeProID" ColumnName="OrderDeProID" />
+                <ScalarProperty Name="OrderDeID" ColumnName="OrderDeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

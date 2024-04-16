@@ -1,0 +1,138 @@
+﻿body {
+    margin: 0px;
+    font-family: Arial;
+    background-color: #f5f5f5;
+}
+
+.banner {
+    margin: 154px auto;
+    margin-bottom: 30px;
+    width: 1200px;
+    height: 360px;
+}
+    .banner img{
+        width: 100%;
+        height: 100%;
+    }
+
+.mall {
+    margin: 0px auto;
+    margin-bottom: 30px;
+    width: 1200px;
+}
+    .mall-1 {
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        background-color: white;
+    }
+        .mall-1 p{
+            line-height: 70px;
+            margin: 0px 5px;
+            color: #D0011B;
+        }
+    .mall-2 {
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+        background-color: white;
+    }
+        .mall-2 table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+            .mall-2 tr td{
+                width: 199px;
+                height: 122px;
+                text-align: center;
+            }
+                .mall-2 tr td img{
+                    width: 85px;;
+                    height: 85px;
+                }
+    .mall-3 {
+        background-color: white;
+    }
+        .mall-3-content{
+            padding: 20px;
+            margin: 0px auto;
+            width: 1160px;
+        }
+            .mall-3-1 p{
+                padding-bottom: 20px;
+                margin: 0px;
+                font-size: 16px;
+                color: #0000008A;
+            }
+
+            .mall-3-2 table{
+                width: 100%;
+                
+            }
+                .mall-3-2 tr td {
+                    margin: 0px 3px;
+                    width: 222px;
+                    text-align: center;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+                }
+                    .mall-3-2 img{
+                        width: 183px;
+                        height: 183px;
+                    }
+    .mall-4 {
+        margin-top: 30px;
+        display: flex;
+    }
+        .mall-4-sidebar{
+            width: 190px;
+        }
+        .mall-4-product{
+
+        }
+            .mall-4-1 {
+                padding: 13px 20px;
+                width: 986px;
+                display: flex;
+                background-color: #00000008;
+            }
+                .mall-4-1-list {
+                    margin-left:10px;
+                    background-color: white;
+
+                }
+                    .mall-4-1 p{
+                        margin: 0px;
+                        padding: 0px 15px;
+                        line-height: 34px;
+                    }
+                    .pho-bien {
+                        background-color: #ee4d2d;
+                        color: white;
+                    }
+            .mall-4-2{
+                width: 990px;
+            }
+                .mall-4-2 table{
+
+                }
+                    .mall-4-2 table tr{
+                        display: inline;
+                        text-align: center;
+                    }
+                        .mall-4-2 table td {
+                            margin: 3px 0px;
+                            background-color: white;
+                            width: 188px;
+                            /*height: 338px;*/
+                            
+                        }
+                            .mall-4-2 table td img{
+                                width: 188px;
+                                height: 188px;
+                            }
+                            .mall-4-2 table td p{
+                                padding: 8px;
+                                margin: 0px;
+                                color: #000000de;
+                                font-size: 12px;
+                            }
+
+

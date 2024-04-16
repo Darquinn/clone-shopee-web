@@ -1,0 +1,48 @@
+﻿@using FINAL.Models;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/StyleAdmin.css" rel="stylesheet" />
+</head>
+<body>
+    <nav>
+        <div class="nav-1">
+            <div class="nav-left">
+                <a href='@Url.Action("TrangChu", "Home")'>
+                    <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-26 225221.png" />
+                </a>
+                <div>
+                    <p>Kênh Người Bán</p>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <div class="host-name">
+                    <img src="~/Content/Shopee/Ảnh chụp màn hình 2023-10-29 233805.png" alt="Alternate Text" />
+                    @if (Session["Users"] != null && Session["Users"] != "")
+                    {
+                        Users acc = (Users)Session["Users"];
+                        <p>@acc.UserName</p>
+                    }
+                </div>
+                <div>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="partial">
+            @{ Html.RenderAction("AdminPartial", "Admin");}
+        </div>
+        <div class="main-content">
+            @RenderBody()
+        </div>
+    </div>
+
+</body>
+</html>
